@@ -1,24 +1,13 @@
-# Tiny R example using the built-in 'mtcars' dataset
+# Minimal mtcars example
 
-# 1. Load the dataset (it ships with R)
-data(mtcars)
+data(mtcars)          # load built-in dataset
 
-# 2. Inspect the first few rows
-head(mtcars)
+head(mtcars)          # quick look at the data
+summary(mtcars)       # basic stats for each column
 
-# 3. Get a summary of all columns
-summary(mtcars)
+model <- lm(mpg ~ wt, data = mtcars)  # simple regression
+summary(model)                         # see model output
 
-# 4. Fit a simple linear model:
-#    mpg (fuel efficiency) explained by weight (wt)
-model <- lm(mpg ~ wt, data = mtcars)
+plot(mtcars$wt, mtcars$mpg)            # basic scatterplot
+abline(model, col = "red")            # regression line
 
-# 5. Print model results
-summary(model)
-
-# 6. Plot mpg vs weight with regression line
-plot(mtcars$wt, mtcars$mpg,
-     xlab = "Weight (1000 lbs)",
-     ylab = "Miles per gallon",
-     main = "Fuel efficiency vs weight")
-abline(model, col = "red", lwd = 2)
